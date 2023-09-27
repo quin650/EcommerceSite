@@ -4,6 +4,7 @@ const initialState = {
     loading: false,
     products: [],
     error:'',
+    product: [],
 }
 
 const productSlice = createSlice({
@@ -22,8 +23,22 @@ const productSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
+        product_Details_Request(state){
+            state.loading = true;
+        },
+        product_Details_Success(state, action){
+            state.loading = false;
+            state.product = action.payload
+        },
+        product_Details_Fail(state, action){
+            state.loading = false;
+            state.error = action.payload;
+        },
     }, 
 });
 
 export const productReducer  = productSlice.actions;
 export default productSlice;
+
+
+

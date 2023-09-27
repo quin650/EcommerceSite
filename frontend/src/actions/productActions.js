@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { productReducer } from '../reducers/productReducers'
+import { useParams } from 'react-router-dom'
+
 
 export const listProducts = () => {
     return async (dispatch) => {
@@ -17,13 +19,12 @@ export const listProducts = () => {
             dispatch(productReducer.product_List_Request());
             const res = await loadProducts();
             if (res.data.error) {
-                dispatch(productReducer.product_List_Fail());
+                dispatch(productReducer.product_List_Fail(res.data.error));
             } else {
                 dispatch(productReducer.product_List_Success(res.data));
-                // console.log('res data: ', res.data);
             }
         } catch (err) {
-            dispatch(productReducer.product_List_Fail(err));
+            dispatch(productReducer.product_List_Fail(err.message));
         };
     };
 };
@@ -38,3 +39,30 @@ export const listProducts = () => {
 //         dispatch(productReducer.product_List_Fail(error));
 //     }
 // }
+
+export const listProductDetails = (id) => {
+    return async (dispatch) => {
+        const config = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        };
+
+        const loadProduct = async () => {
+            const res = await axios.get(`/api/products/${id}`, config);
+            return res;
+        };
+        try {
+            dispatch(productReducer.product_Details_Request());
+            const res = await loadProduct();
+            if (res.data.error) {
+                dispatch(productReducer.product_Details_Fail(res.data.error));
+            } else {
+                dispatch(productReducer.product_Details_Success(res.data));
+            }
+        } catch (err) {
+            dispatch(productReducer.product_Details_Fail(err.message));
+        };
+    };
+};
