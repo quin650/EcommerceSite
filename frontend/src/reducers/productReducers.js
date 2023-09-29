@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+const initialStateProduct = {
     loading: false,
     products: [],
     error:'',
@@ -9,7 +9,7 @@ const initialState = {
 
 const productSlice = createSlice({
     name: 'product',
-    initialState,
+    initialState: initialStateProduct,
     reducers: {
         product_List_Request(state){
             state.loading = true;
@@ -39,6 +39,3 @@ const productSlice = createSlice({
 
 export const productReducer  = productSlice.actions;
 export default productSlice;
-
-
-

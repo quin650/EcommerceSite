@@ -1,7 +1,5 @@
 import axios from 'axios'
 import { productReducer } from '../reducers/productReducers'
-import { useParams } from 'react-router-dom'
-
 
 export const listProducts = () => {
     return async (dispatch) => {
