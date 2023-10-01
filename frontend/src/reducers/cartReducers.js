@@ -19,7 +19,11 @@ const cartSlice = createSlice({
             } else {
                     state.cartItems.push(item)
                 }
-            }
+            },
+        cart_remove_item(state, action){
+            state.cartItems = state.cartItems.filter(x => 
+                x.product !== action.payload)
+        }
         },
     },
 );

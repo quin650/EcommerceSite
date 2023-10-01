@@ -85,8 +85,8 @@ function ProductScreen({ history }) {
                                                     <Row>
                                                         <Col>Qty</Col>
                                                         <Col xs='auto' className='my-1'>
-                                                            <Form.Select
-                                                                
+                                                            <Form.Control
+                                                                as="select"
                                                                 aria-label="Default select example"
                                                                 value={qty}
                                                                 onChange={(e) => setQty(e.target.value)}
@@ -100,7 +100,7 @@ function ProductScreen({ history }) {
                                                                     ))
                                                                     
                                                                 }
-                                                            </Form.Select>
+                                                            </Form.Control>
                                                         </Col>
                                                     </Row>
                                                 </ListGroup.Item>
