@@ -5,7 +5,7 @@ import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
-function CartScreen({  }) {
+function CartScreen() {
     const dispatch = useDispatch();
     const navigate = useNavigate(); //history substitute for react router 6
     const params = useParams(); //match.params substitute for react router 6

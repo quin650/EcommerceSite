@@ -25,12 +25,15 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         return data
 
 
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+
+
 @api_view(["POST"])
 def registerUser(request):
     data = request.data
     try:
         user = User.objects.create(
-            first_name=data["name"],
             username=data["email"],
             email=data["email"],
             password=make_password(data["password"]),
@@ -40,10 +43,6 @@ def registerUser(request):
     except:
         message = {"detail:", "User with this email already exists"}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
-
-
-class MyTokenObtainPairView(TokenObtainPairView):
-    serializer_class = MyTokenObtainPairSerializer
 
 
 @api_view(["GET"])
